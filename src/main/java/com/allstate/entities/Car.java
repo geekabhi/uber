@@ -6,7 +6,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.Year;
 import java.util.Date;
 
 @Entity
@@ -18,11 +17,12 @@ public class Car {
     private int version;
     private String make;
     private String model;
-    private Year year;
+    private int year;
     private String type;
     private String vin;
     private Date created;
     private Date modified;
+
 
     @Id
     @GeneratedValue

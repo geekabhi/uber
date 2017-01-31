@@ -3,7 +3,7 @@ CREATE TABLE `cars` (
   `version`   int(11)       NOT NULL DEFAULT '0',
   `make`      varchar(45)   DEFAULT NULL,
   `model`     varchar(45)   DEFAULT NULL,
-  `year`      year(4)       DEFAULT NULL,
+  `year`      INT          DEFAULT NULL,
   `type`      varchar(45)   DEFAULT NULL,
   `vin`       varchar(45)   NOT NULL,
   `created`   timestamp     NULL DEFAULT CURRENT_TIMESTAMP,

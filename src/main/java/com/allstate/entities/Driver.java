@@ -50,6 +50,7 @@ public class Driver {
     }
 
     @Column(columnDefinition = "ENUM('MALE','FEMALE')")
+    @Enumerated(EnumType.STRING)
     public Gender getGender() {
         return gender;
     }

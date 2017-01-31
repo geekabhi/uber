@@ -49,6 +49,7 @@ public class Passenger {
     }
 
     @Column(columnDefinition = "ENUM('MALE', 'FEMALE')")
+    @Enumerated(EnumType.STRING)
     public Gender getGender() {
         return gender;
     }

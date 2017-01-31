@@ -3,7 +3,7 @@ CREATE TABLE `passengers` (
   `version`         INT                     NOT NULL,
   `name`            VARCHAR(45)             NOT NULL,
   `age`             INT                     NULL,
-  `gender`          ENUM('Male', 'Female')  NULL,
+  `gender`          ENUM('MALE', 'FEMALE')  NULL,
   `credit_balance`  DECIMAL(10,2)           NULL DEFAULT 0.00,
   `created`         TIMESTAMP               NULL DEFAULT CURRENT_TIMESTAMP,
   `modified`        TIMESTAMP               NULL DEFAULT CURRENT_TIMESTAMP,

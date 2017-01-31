@@ -5,4 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface IDriverRepository extends CrudRepository<Driver, Integer> {
+    Driver findByName(String name);
 }

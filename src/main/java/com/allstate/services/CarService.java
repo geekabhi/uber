@@ -17,4 +17,24 @@ public class CarService {
     public Car create(Car car) {
         return this.carRepository.save(car);
     }
+
+    public Iterable<Car> find() {
+        return this.carRepository.findAll();
+    }
+
+    public Car findById(int id) {
+        return this.carRepository.findOne(id);
+    }
+
+    public Car findByVin(String vin) {
+        return this.carRepository.findByVin(vin);
+    }
+
+    public void delete(Car car) {
+        this.carRepository.delete(car);
+    }
+
+    public void delete(int id) {
+        this.carRepository.delete(id);
+    }
 }

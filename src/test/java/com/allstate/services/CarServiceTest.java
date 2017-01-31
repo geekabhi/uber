@@ -7,14 +7,16 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.Year;
+import java.util.Date;
 
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Sql(value = {"/sql/seed.sql"})
 public class CarServiceTest {
 
     @Autowired
@@ -36,7 +38,7 @@ public class CarServiceTest {
         car.setVin("XYZ");
         car.setMake("Toyota");
         car.setModel("Innova");
-        car.setYear(Year.now());
+        car.setYear(2015);
         Car expected = this.carService.create(car);
 
         assertNotNull(expected);
@@ -44,5 +46,42 @@ public class CarServiceTest {
         assertEquals("XYZ", expected.getVin());
     }
 
+    @Test
+    public void shouldFindCarById() throws Exception {
 
+        Car expected = this.carService.findById(1);
+
+        assertNotNull(expected);
+        assertEquals("ASDF", expected.getVin());
+    }
+
+    @Test
+    public void shouldFindCarByVin() throws Exception {
+
+        Car expected = this.carService.findByVin("ASDF");
+
+        assertNotNull(expected);
+        assertEquals("ASDF", expected.getVin());
+    }
+
+    @Test
+    public void shouldDeleteCarById() throws Exception {
+
+        this.carService.delete(1);
+
+        Car expected = this.carService.findById(1);
+
+        assertNull(expected);
+    }
+
+    @Test
+    public void shouldDeleteCar() throws Exception {
+        Car car = this.carService.findById(1);
+
+        this.carService.delete(car);
+
+        Car expected = this.carService.findById(1);
+
+        assertNull(expected);
+    }
 }
