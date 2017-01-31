@@ -1,0 +1,11 @@
+CREATE TABLE `trips` (
+  `id`        INT             NOT NULL AUTO_INCREMENT,
+  `version`   INT             NOT NULL DEFAULT 0,
+  `start`     TIMESTAMP       NULL DEFAULT CURRENT_TIMESTAMP,
+  `stop`      TIMESTAMP       NULL DEFAULT CURRENT_TIMESTAMP,
+  `distance`  DECIMAL(10,2)   NULL DEFAULT 0.00,
+  `cost`      DECIMAL(10,2)   NULL DEFAULT 0.00,
+  `tip`       DECIMAL(2,2)    NOT NULL DEFAULT .00,
+  `created`   TIMESTAMP       NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified`  TIMESTAMP       NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`));
