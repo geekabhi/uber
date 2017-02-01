@@ -1,8 +1,7 @@
 package com.allstate;
 
 import com.allstate.controllers.CarControllerTest;
-import com.allstate.services.CarServiceTest;
-import com.allstate.services.CityServiceTest;
+import com.allstate.services.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -14,7 +13,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @Suite.SuiteClasses({
 		CarServiceTest.class,
 		CarControllerTest.class,
-		CityServiceTest.class
+		CityServiceTest.class,
+		DriverServiceTest.class,
+		PassengerServiceTest.class,
+		TripServiceTest.class
 })
 public class UberApplicationTests {
 

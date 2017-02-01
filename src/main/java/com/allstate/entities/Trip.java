@@ -21,6 +21,9 @@ public class Trip {
     private double tip;
     private Date created;
     private Date modified;
+    private Car car;
+    private Passenger passenger;
+
 
     @Id
     @GeneratedValue
@@ -37,6 +40,24 @@ public class Trip {
     }
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    public Car getCar() {
+        return car;
+    }
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "passenger_id")
+    public Passenger getPassenger() {
+        return passenger;
+    }
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
     }
 
     @CreationTimestamp

@@ -1,5 +1,6 @@
 package com.allstate.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -7,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,6 +24,9 @@ public class Car {
     private String vin;
     private Date created;
     private Date modified;
+    private City city;
+    private Driver driver;
+    private List<Trip> trips;
 
 
     @Id
@@ -47,6 +52,33 @@ public class Car {
     }
     public void setVin(String vin) {
         this.vin = vin;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    public City getCity() {
+        return city;
+    }
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "driver_id")
+    public Driver getDriver() {
+        return driver;
+    }
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    @OneToMany(mappedBy = "car")
+    @JsonIgnore
+    public List<Trip> getTrips() {
+        return trips;
+    }
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
     }
 
     @CreationTimestamp

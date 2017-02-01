@@ -1,6 +1,7 @@
 package com.allstate.entities;
 
 import com.allstate.enums.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,9 +22,10 @@ public class Driver {
     private int age;
     private Gender gender;
     private String license;
-    private String violations;
+    private int violations;
     private Date created;
     private Date modified;
+    private List<Car> cars;
 
     @Id
     @GeneratedValue
@@ -56,6 +59,15 @@ public class Driver {
     }
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    @OneToMany(mappedBy = "driver")
+    @JsonIgnore
+    public List<Car> getCars() {
+        return cars;
+    }
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
     }
 
     @CreationTimestamp

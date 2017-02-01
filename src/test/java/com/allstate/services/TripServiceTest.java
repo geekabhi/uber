@@ -1,6 +1,6 @@
 package com.allstate.services;
 
-import com.allstate.entities.City;
+import com.allstate.entities.Trip;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,18 +10,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.Date;
 import static org.junit.Assert.*;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Sql(value = {"/sql/seed.sql"})
-public class CityServiceTest {
-
+public class TripServiceTest {
     @Autowired
-    private CityService cityService;
+    private TripService tripService;
 
     @Before
     public void setUp() throws Exception {
@@ -35,35 +34,33 @@ public class CityServiceTest {
 
     @Test
     public void create() throws Exception {
-        City city = new City();
-        city.setName("Bangalore");
-        city.setState("KA");
+        Trip trip = new Trip();
 
-        City expected = this.cityService.create(city);
+        trip.setCost(10.00d);
+
+        Date oldDate = new Date();
+        final long hoursInMillis = 60L * 60L * 1000L;
+        Date newDate = new Date(oldDate.getTime() +
+                (2L * hoursInMillis));
+
+        trip.setStart(oldDate);
+        trip.setStop(newDate);
+
+        Trip expected = this.tripService.create(trip);
 
         assertNotNull(expected);
         assertTrue(expected.getId()>0);
-        assertEquals("Bangalore", expected.getName());
-        assertEquals("KA", expected.getState());
+
+
     }
 
     @Test
     public void find() throws Exception {
-        List<City> expected = (ArrayList<City>)this.cityService.find();
 
-        assertNotNull(expected);
-        assertTrue(expected.get(0).getId()>0);
-        assertEquals("Delhi", expected.get(0).getName());
-        assertEquals("Delhi", expected.get(0).getState());
     }
 
     @Test
     public void findById() throws Exception {
-
-    }
-
-    @Test
-    public void findByName() throws Exception {
 
     }
 

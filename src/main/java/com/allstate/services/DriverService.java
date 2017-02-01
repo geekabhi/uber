@@ -37,4 +37,10 @@ public class DriverService {
     public void delete(int id) {
         this.driverRepository.delete(id);
     }
+
+//    public void addViolationTicket(Driver driver) {
+//        if(driver.getViolations() != 3) {
+//            driver.setViolations(driver.getViolations() + 1);
+//        }
+//    }
 }

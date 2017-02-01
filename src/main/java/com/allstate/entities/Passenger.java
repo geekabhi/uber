@@ -1,6 +1,7 @@
 package com.allstate.entities;
 
 import com.allstate.enums.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,6 +24,7 @@ public class Passenger {
     private double credit_balance;
     private Date created;
     private Date modified;
+    private List<Trip> trips;
 
     @Id
     @GeneratedValue
@@ -55,6 +58,15 @@ public class Passenger {
     }
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    @OneToMany(mappedBy = "passenger")
+    @JsonIgnore
+    public List<Trip> getTrips() {
+        return trips;
+    }
+    public void setTrips(List<Trip> trips) {
+        this.trips = trips;
     }
 
     @CreationTimestamp
